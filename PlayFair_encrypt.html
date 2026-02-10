@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Playfair Cipher Encryption</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(to right, rgba(75, 0, 130, 0.85), rgba(138, 43, 226, 0.85)); /* Shiny purple to violet gradient background */
+            margin: 0;
+            padding: 20px; /* Add padding to ensure content is not cut off */
+            box-sizing: border-box; /* Ensure padding is included in the element's total width and height */
+            position: relative; /* For positioning the back and home buttons */
+        }
+        .container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            flex-wrap: wrap;
+            width: 100%; /* Ensure container takes full width */
+        }
+        .button {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 20px;
+            font-size: 24px;
+            font-weight: bold;
+            cursor: pointer;
+            text-decoration: none;
+            color: white;
+            background: linear-gradient(to right, rgba(138, 43, 226, 0.9), rgba(75, 0, 130, 0.9)); /* Shiny gradient for bubbles */
+            border: none;
+            border-radius: 50%;
+            width: 250px;
+            height: 250px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2); /* Add some shadow for a shiny effect */
+            transition: background-color 0.3s, transform 0.3s, box-shadow 0.3s;
+        }
+        .button:hover {
+            background: linear-gradient(to right, rgba(75, 0, 130, 0.9), rgba(138, 43, 226, 0.9)); /* Inverse gradient on hover */
+            transform: scale(1.05); /* Slightly enlarge on hover */
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3); /* Increase shadow on hover */
+        }
+        .small-button {
+            position: absolute;
+            top: 20px;
+            width: 70px; /* Increased width */
+            height: 70px; /* Increased height */
+            font-size: 24px;
+            font-weight: bold;
+            cursor: pointer;
+            text-decoration: none;
+            color: white;
+            background: linear-gradient(to right, rgba(138, 43, 226, 0.9), rgba(75, 0, 130, 0.9)); /* Shiny gradient for bubbles */
+            border: none;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2); /* Add some shadow for a shiny effect */
+            transition: background-color 0.3s, transform 0.3s, box-shadow 0.3s;
+        }
+        .small-button:hover {
+            background: linear-gradient(to right, rgba(75, 0, 130, 0.9), rgba(138, 43, 226, 0.9)); /* Inverse gradient on hover */
+            transform: scale(1.05); /* Slightly enlarge on hover */
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3); /* Increase shadow on hover */
+        }
+        .back-button {
+            left: 20px;
+        }
+        .home-button {
+            right: 20px;
+        }
+        .form-container {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: flex-start; /* Align text to the left side of the form */
+            background: linear-gradient(to right, rgba(138, 43, 226, 0.9), rgba(75, 0, 130, 0.9)); /* Shiny gradient for form */
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2); /* Add some shadow for a shiny effect */
+            width: 100%;
+            max-width: 400px;
+        }
+        .form-container label {
+            font-size: 20px; /* Larger font size */
+            color: white; /* White text color */
+            margin-bottom: 5px;
+        }
+        .form-container input {
+            width: calc(100% - 40px); /* Adjust width to account for padding */
+            padding: 10px;
+            margin: 10px 0;
+            border: none;
+            border-radius: 10px;
+            font-size: 18px;
+            color: white; /* Make text white */
+            background: rgba(255, 255, 255, 0.1); /* Light background for input */
+        }
+        .form-container button {
+            align-self: center; /* Center the submit button */
+            padding: 10px 20px;
+            font-size: 18px;
+            font-weight: bold;
+            cursor: pointer;
+            text-decoration: none;
+            color: white;
+            background: linear-gradient(to right, rgba(75, 0, 130, 0.9), rgba(138, 43, 226, 0.9)); /* Shiny gradient for button */
+            border: none;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2); /* Add some shadow for a shiny effect */
+            transition: background-color 0.3s, transform 0.3s, box-shadow 0.3s;
+        }
+        .form-container button:hover {
+            background: linear-gradient(to right, rgba(138, 43, 226, 0.9), rgba(75, 0, 130, 0.9)); /* Inverse gradient on hover */
+            transform: scale(1.05); /* Slightly enlarge on hover */
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3); /* Increase shadow on hover */
+        }
+        .result-container {
+            display: flex;
+            align-items: center;
+            width: 100%;
+            margin-top: 10px;
+        }
+        .result-container label {
+            margin-right: 10px; /* Add space after the "Result:" label */
+        }
+        .whatsapp-button {
+            display: none;
+            margin-left: 10px;
+            cursor: pointer;
+        }
+        .whatsapp-button img {
+            width: 30px;
+            height: 30px;
+        }
+        @media (max-width: 768px) {
+            .form-container {
+                width: 90%;
+                padding: 20px;
+            }
+            .small-button {
+                width: 50px; /* Reduced width */
+                height: 50px; /* Reduced height */
+                font-size: 18px; /* Reduced font size */
+            }
+        }
+        @media (max-width: 600px) {
+            .container {
+                flex-direction: column;
+            }
+            .button {
+                width: 150px;
+                height: 150px;
+                font-size: 16px;
+                margin: 10px; /* Adjust margin for mobile */
+            }
+            .small-button {
+                width: 50px; /* Reduced width */
+                height: 50px; /* Reduced height */
+                font-size: 18px; /* Reduced font size */
+            }
+            .form-container {
+                width: 90%;
+                padding: 20px;
+            }
+            .whatsapp-button img {
+                width: 25px;
+                height: 25px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <a href="javascript:history.back()" class="small-button back-button">&#8592;</a> <!-- Back button with left arrow symbol -->
+    <a href="index.html" class="small-button home-button">&#8962;</a> <!-- Home button with home symbol -->
+    <div class="form-container" id="formContainer">
+        <label for="inputText" id="inputTextLabel">Enter Text:</label>
+        <input type="text" id="inputText">
+        <label for="inputKey" id="inputKeyLabel">Enter Key:</label>
+        <input type="text" id="inputKey">
+        <button id="submitButton" onclick="encryptText()">Submit</button>
+        <div class="result-container" id="resultContainer" style="display:none;">
+            <label for="outputText" id="outputLabel">Result:</label>
+            <input type="text" id="outputText" readonly>
+            <a id="whatsappButton" class="whatsapp-button" target="_blank">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp">
+            </a>
+        </div>
+    </div>
+    <script>
+        function encryptText() {
+            const text = document.getElementById('inputText').value;
+            const key = document.getElementById('inputKey').value;
+            // Implement Playfair cipher encryption logic here
+            const result = playfairEncrypt(text, key);
+            document.getElementById('outputText').value = result;
+
+            // Hide the first two input fields, their labels, and the submit button, then show the result field
+            document.getElementById('inputText').style.display = 'none';
+            document.getElementById('inputKey').style.display = 'none';
+            document.getElementById('inputTextLabel').style.display = 'none';
+            document.getElementById('inputKeyLabel').style.display = 'none';
+            document.getElementById('submitButton').style.display = 'none';
+            document.getElementById('resultContainer').style.display = 'flex';
+
+            // Show the WhatsApp button
+            const whatsappButton = document.getElementById('whatsappButton');
+            whatsappButton.style.display = 'block';
+            whatsappButton.href = `https://api.whatsapp.com/send?text=${encodeURIComponent(result)}`;
+        }
+
+        function playfairEncrypt(text, key) {
+            // Placeholder function for Playfair cipher encryption
+            // Replace this with actual encryption logic
+            return text.split('').reverse().join(''); // Example: reverse the text
+        }
+    </script>
+</body>
+</html>

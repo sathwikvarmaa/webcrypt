@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cryptographic Techniques</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(to right, rgba(75, 0, 130, 0.85), rgba(138, 43, 226, 0.85)); /* Shiny purple to violet gradient background */
+            margin: 0;
+            padding: 20px; /* Add padding to ensure content is not cut off */
+            box-sizing: border-box; /* Ensure padding is included in the element's total width and height */
+            position: relative; /* For positioning the back and home buttons */
+        }
+        .container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            flex-wrap: wrap;
+            width: 100%; /* Ensure container takes full width */
+        }
+        .button {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 20px;
+            font-size: 24px;
+            font-weight: bold;
+            cursor: pointer;
+            text-decoration: none;
+            color: white;
+            background: linear-gradient(to right, rgba(138, 43, 226, 0.9), rgba(75, 0, 130, 0.9)); /* Shiny gradient for bubbles */
+            border: none;
+            border-radius: 50%;
+            width: 250px;
+            height: 250px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2); /* Add some shadow for a shiny effect */
+            transition: background-color 0.3s, transform 0.3s, box-shadow 0.3s;
+        }
+        .button:hover {
+            background: linear-gradient(to right, rgba(75, 0, 130, 0.9), rgba(138, 43, 226, 0.9)); /* Inverse gradient on hover */
+            transform: scale(1.05); /* Slightly enlarge on hover */
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3); /* Increase shadow on hover */
+        }
+        .small-button {
+            position: absolute;
+            top: 20px;
+            width: 70px; /* Increased width */
+            height: 70px; /* Increased height */
+            font-size: 24px;
+            font-weight: bold;
+            cursor: pointer;
+            text-decoration: none;
+            color: white;
+            background: linear-gradient(to right, rgba(138, 43, 226, 0.9), rgba(75, 0, 130, 0.9)); /* Shiny gradient for bubbles */
+            border: none;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2); /* Add some shadow for a shiny effect */
+            transition: background-color 0.3s, transform 0.3s, box-shadow 0.3s;
+        }
+        .small-button:hover {
+            background: linear-gradient(to right, rgba(75, 0, 130, 0.9), rgba(138, 43, 226, 0.9)); /* Inverse gradient on hover */
+            transform: scale(1.05); /* Slightly enlarge on hover */
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3); /* Increase shadow on hover */
+        }
+        .back-button {
+            left: 20px;
+        }
+        .home-button {
+            right: 20px;
+        }
+        @media (max-width: 1024px) {
+            .button {
+                width: 220px;
+                height: 220px;
+                font-size: 22px;
+            }
+            .small-button {
+                position: static;
+                margin: 10px;
+                width: 50px; /* Reduced width */
+                height: 50px; /* Reduced height */
+                font-size: 18px; /* Reduced font size */
+            }
+        }
+        @media (max-width: 768px) {
+            .button {
+                width: 200px;
+                height: 200px;
+                font-size: 20px;
+            }
+            .small-button {
+                position: static;
+                margin: 10px;
+                width: 50px; /* Reduced width */
+                height: 50px; /* Reduced height */
+                font-size: 18px; /* Reduced font size */
+            }
+        }
+        @media (max-width: 600px) {
+            .container {
+                flex-direction: column;
+            }
+            .button {
+                width: 150px;
+                height: 150px;
+                font-size: 16px;
+                margin: 10px; /* Adjust margin for mobile */
+            }
+            .small-button {
+                position: static;
+                margin: 10px;
+                width: 50px; /* Reduced width */
+                height: 50px; /* Reduced height */
+                font-size: 18px; /* Reduced font size */
+            }
+            .small-buttons-container {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="small-buttons-container">
+        <a href="javascript:history.back()" class="small-button back-button">&#8592;</a> <!-- Back button with left arrow symbol -->
+        <a href="index.html" class="small-button home-button">&#8962;</a> <!-- Home button with home symbol -->
+    </div>
+    <div class="container">
+        <a href="Verman_cipher.html" class="button">Vernam Cipher</a>
+        <a href="Vignere_cipher.html" class="button">Vigenère Cipher</a>
+        <a href="PlayFair_encrypt.html" class="button">Playfair cipher</a>
+        <a href="Hill_Cipher.html" class="button">Hill cipher</a>
+    </div>
+</body>
+</html>

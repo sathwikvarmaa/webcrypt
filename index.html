@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cryptographic Techniques</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(to right, rgba(75, 0, 130, 0.85), rgba(138, 43, 226, 0.85)); /* Shiny purple to violet gradient background */
+            margin: 0;
+            padding: 20px; /* Add padding to ensure content is not cut off */
+        }
+        .container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            flex-wrap: wrap;
+            gap: 20px; /* Add gap between buttons */
+        }
+        .button {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 20px;
+            font-size: 24px;
+            font-weight: bold;
+            cursor: pointer;
+            text-decoration: none;
+            color: white;
+            background: linear-gradient(to right, rgba(138, 43, 226, 0.9), rgba(75, 0, 130, 0.9)); /* Shiny gradient for bubbles */
+            border: none;
+            border-radius: 50%;
+            width: 270px; /* Increased width */
+            height: 270px; /* Increased height */
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2); /* Add some shadow for a shiny effect */
+            transition: background-color 0.3s, transform 0.3s, box-shadow 0.3s;
+        }
+        .button:hover {
+            background: linear-gradient(to right, rgba(75, 0, 130, 0.9), rgba(138, 43, 226, 0.9)); /* Inverse gradient on hover */
+            transform: scale(1.05); /* Slightly enlarge on hover */
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3); /* Increase shadow on hover */
+        }
+        .heading {
+            font-size: 24px;
+            font-weight: bold;
+            color: white;
+            margin-bottom: 20px;
+            text-shadow: 0 4px 15px rgba(0, 0, 0, 0.2); /* Add some shadow for a shiny effect */
+            width: 580px; /* Adjusted width */
+            height: 60px; /* Increase height */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        @media (max-width: 1024px) {
+            .heading {
+                font-size: 22px;
+                width: 480px; /* Adjust width for smaller screens */
+                height: 50px; /* Adjust height for smaller screens */
+            }
+            .button {
+                width: 240px; /* Adjusted width */
+                height: 240px; /* Adjusted height */
+                font-size: 22px;
+            }
+        }
+        @media (max-width: 768px) {
+            .heading {
+                font-size: 20px;
+                width: 440px; /* Adjust width for smaller screens */
+                height: 45px; /* Adjust height for smaller screens */
+            }
+            .button {
+                width: 220px; /* Adjusted width */
+                height: 220px; /* Adjusted height */
+                font-size: 20px;
+            }
+        }
+        @media (max-width: 600px) {
+            .container {
+                flex-direction: column;
+            }
+            .heading {
+                font-size: 18px;
+                margin-bottom: 10px; /* Adjust margin for mobile */
+                width: 320px; /* Adjust width for mobile */
+                height: 40px; /* Adjust height for mobile */
+            }
+            .button {
+                width: 170px; /* Adjusted width */
+                height: 170px; /* Adjusted height */
+                font-size: 16px; /* Smaller font size for mobile */
+                margin: 10px; /* Adjust margin for mobile */
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <a id="textEncryption" href="encrypt.html" class="button">Encrypt</a>
+        <a id="fileEncryption" href="decrypt.html" class="button">Decrypt</a>
+    </div>
+</body>
+</html>

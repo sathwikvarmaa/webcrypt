@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hill Cipher Decryption</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(to right, rgba(75, 0, 130, 0.85), rgba(138, 43, 226, 0.85));
+            margin: 0;
+            padding: 20px;
+            box-sizing: border-box;
+            position: relative;
+        }
+        .container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            flex-wrap: wrap;
+            width: 100%;
+        }
+        .button {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 20px;
+            font-size: 24px;
+            font-weight: bold;
+            cursor: pointer;
+            text-decoration: none;
+            color: white;
+            background: linear-gradient(to right, rgba(138, 43, 226, 0.9), rgba(75, 0, 130, 0.9));
+            border: none;
+            border-radius: 50%;
+            width: 250px;
+            height: 250px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            transition: background-color 0.3s, transform 0.3s, box-shadow 0.3s;
+        }
+        .button:hover {
+            background: linear-gradient(to right, rgba(75, 0, 130, 0.9), rgba(138, 43, 226, 0.9));
+            transform: scale(1.05);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+        }
+        .small-button {
+            position: absolute;
+            top: 20px;
+            width: 70px;
+            height: 70px;
+            font-size: 24px;
+            font-weight: bold;
+            cursor: pointer;
+            text-decoration: none;
+            color: white;
+            background: linear-gradient(to right, rgba(138, 43, 226, 0.9), rgba(75, 0, 130, 0.9));
+            border: none;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            transition: background-color 0.3s, transform 0.3s, box-shadow 0.3s;
+        }
+        .small-button:hover {
+            background: linear-gradient(to right, rgba(75, 0, 130, 0.9), rgba(138, 43, 226, 0.9));
+            transform: scale(1.05);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+        }
+        .back-button {
+            left: 20px;
+        }
+        .home-button {
+            right: 20px;
+        }
+        .form-container {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: flex-start;
+            background: linear-gradient(to right, rgba(138, 43, 226, 0.9), rgba(75, 0, 130, 0.9));
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            width: 100%;
+            max-width: 400px;
+        }
+        .form-container label {
+            font-size: 20px;
+            color: white;
+            margin-bottom: 5px;
+        }
+        .form-container input {
+            width: calc(100% - 40px);
+            padding: 10px;
+            margin: 10px 0;
+            border: none;
+            border-radius: 10px;
+            font-size: 18px;
+            color: white;
+            background: rgba(255, 255, 255, 0.1);
+        }
+        .form-container button {
+            align-self: center;
+            padding: 10px 20px;
+            font-size: 18px;
+            font-weight: bold;
+            cursor: pointer;
+            color: white;
+            background: linear-gradient(to right, rgba(75, 0, 130, 0.9), rgba(138, 43, 226, 0.9));
+            border: none;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            transition: background-color 0.3s, transform 0.3s, box-shadow 0.3s;
+        }
+        .form-container button:hover {
+            background: linear-gradient(to right, rgba(138, 43, 226, 0.9), rgba(75, 0, 130, 0.9));
+            transform: scale(1.05);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+        }
+        .result-container {
+            display: flex;
+            align-items: center;
+            width: 100%;
+            margin-top: 10px;
+        }
+        .result-container label {
+            margin-right: 10px;
+        }
+        .whatsapp-button {
+            display: none;
+            margin-left: 10px;
+            cursor: pointer;
+        }
+        .whatsapp-button img {
+            width: 30px;
+            height: 30px;
+        }
+        @media (max-width: 768px) {
+            .form-container {
+                width: 90%;
+                padding: 20px;
+            }
+            .small-button {
+                width: 50px;
+                height: 50px;
+                font-size: 18px;
+            }
+        }
+        @media (max-width: 600px) {
+            .container {
+                flex-direction: column;
+            }
+            .button {
+                width: 150px;
+                height: 150px;
+                font-size: 16px;
+                margin: 10px;
+            }
+            .small-button {
+                width: 50px;
+                height: 50px;
+                font-size: 18px;
+            }
+            .form-container {
+                width: 90%;
+                padding: 20px;
+            }
+            .whatsapp-button img {
+                width: 25px;
+                height: 25px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <a href="javascript:history.back()" class="small-button back-button">&#8592;</a>
+    <a href="index.html" class="small-button home-button">&#8962;</a>
+    <div class="form-container" id="formContainer">
+        <label for="inputText" id="inputTextLabel">Enter Encrypted Text:</label>
+        <input type="text" id="inputText">
+        <label for="inputKey" id="inputKeyLabel">Enter Key:</label>
+        <input type="text" id="inputKey">
+        <button id="submitButton" onclick="decryptText()">Decrypt</button>
+        <div class="result-container" id="resultContainer" style="display:none;">
+            <label for="outputText" id="outputLabel">Result:</label>
+            <input type="text" id="outputText" readonly>
+            <a id="whatsappButton" class="whatsapp-button" target="_blank">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp">
+            </a>
+        </div>
+    </div>
+    <script>
+        function decryptText() {
+            const text = document.getElementById('inputText').value;
+            const key = document.getElementById('inputKey').value;
+            // Implement Hill cipher decryption logic here
+            const result = hillDecrypt(text, key);
+            document.getElementById('outputText').value = result;
+
+            // Hide the first two input fields, their labels, and the submit button, then show the result field
+            document.getElementById('inputText').style.display = 'none';
+            document.getElementById('inputKey').style.display = 'none';
+            document.getElementById('inputTextLabel').style.display = 'none';
+            document.getElementById('inputKeyLabel').style.display = 'none';
+            document.getElementById('submitButton').style.display = 'none';
+            document.getElementById('resultContainer').style.display = 'flex';
+
+            // Show the WhatsApp button
+            const whatsappButton = document.getElementById('whatsappButton');
+            whatsappButton.style.display = 'block';
+            whatsappButton.href = `https://api.whatsapp.com/send?text=${encodeURIComponent(result)}`;
+        }
+
+        function hillDecrypt(text, key) {
+            // Placeholder function for Hill cipher decryption
+            // Replace this with actual decryption logic
+            // Example: simple Hill cipher decryption for 2x2 key matrix
+            const keyMatrix = [
+                [3, 3],
+                [2, 5]
+            ];
+            const inverseKeyMatrix = invertMatrix(keyMatrix);
+            const textVector = text.split('').map(char => char.charCodeAt(0) - 65);
+            const resultVector = [
+                (inverseKeyMatrix[0][0] * textVector[0] + inverseKeyMatrix[0][1] * textVector[1]) % 26,
+                (inverseKeyMatrix[1][0] * textVector[0] + inverseKeyMatrix[1][1] * textVector[1]) % 26
+            ];
+            return resultVector.map(num => String.fromCharCode(num + 65)).join('');
+        }
+
+        function invertMatrix(matrix) {
+            // Placeholder function to invert a 2x2 matrix
+            // Replace this with actual matrix inversion logic
+            const determinant = matrix[0][0] * matrix[1][1] - matrix[0][1] * matrix[1][0];
+            const inverseDeterminant = modInverse(determinant, 26);
+            return [
+                [matrix[1][1] * inverseDeterminant % 26, -matrix[0][1] * inverseDeterminant % 26],
+                [-matrix[1][0] * inverseDeterminant % 26, matrix[0][0] * inverseDeterminant % 26]
+            ];
+        }
+
+        function modInverse(a, m) {
+            // Function to find the modular inverse of a under modulo m
+            for (let x = 1; x < m; x++) {
+                if ((a * x) % m === 1) {
+                    return x;
+                }
+            }
+            return 1; // Return 1 if no modular inverse found (should not happen for valid keys)
+        }
+    </script>
+</body>
+</html>
