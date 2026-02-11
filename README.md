@@ -25,7 +25,8 @@ WebCrypt is a browser-based encryption toolkit that combines modern AES-256 file
 
 ## Getting Started
 
-1. Open the project folder in a browser by launching [index.html](index.html).
+1. Open the project folder in a browser by launching [index.html](index.html).  
+   Or view the live project here: [Live Demo](https://ecryptionanddecryption.netlify.app/)
 2. Choose a cipher from the interface.
 3. Use the drag-and-drop area to encrypt or decrypt files.
 
